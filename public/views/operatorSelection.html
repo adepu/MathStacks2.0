@@ -1,0 +1,14 @@
+<div id="backButtonArea">
+  <a href="#operatorSelection"><button id="backButton">Restart Selection</button></a>
+</div>
+<div id="optionsSelectArea">
+  <h2>Please select an operation</h2>
+  <table id='operationSelectionTable'>
+    <tr>
+      <td click-link='/difficultySelection' ng-click='operatorType("addition")' id='additionButton'>Addition</td>
+      <td click-link='/difficultySelection' ng-click='operatorType("subtraction")' id='subtractionButton'>Subtraction</td>
+      <td click-link='/difficultySelection' ng-click='operatorType("multiplication")' id='multiplicationButton'>Multiplication</td>
+      <td click-link='/difficultySelection' ng-click='operatorType("division")' id='divisionButton'>Division</td>
+    </tr>
+  </table>
+</div>
