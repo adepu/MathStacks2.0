@@ -1,8 +1,10 @@
 angular.module('MathStacks.services', [])
     .service('sharedProperties', function () {
 
-        var usageType = 'practice';
-        var operatorType = 'addition';
+        var usageType = '';
+        var operatorType = '';
+        var difficultyType = '';
+        var questionAmount = '';
         return {
             getUsageType: function () {
                 return usageType;
@@ -15,7 +17,20 @@ angular.module('MathStacks.services', [])
             },
             setOperatorType: function(value) {
                 operatorType = value;
+            },
+            getDifficultyType: function () {
+                return difficultyType;
+            },
+            setDifficultyType: function(value) {
+                difficultyType = value;
+            },
+            getQuestionAmountType: function () {
+                return questionAmount;
+            },
+            setQuestionAmountType: function(value) {
+                questionAmount = value;
             }
+
 
         };
   });
