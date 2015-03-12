@@ -1,0 +1,7 @@
+<ng-include src="'/views/homePageRedirectArea.html'"></ng-include>
+
+<div id="questionSelectorArea">
+  <select id="questionSelector" name="mydropdown">
+    <option ng-repeat="i in getNumber(questionAmount) track by $index">Question {{$index + 1}}</option>
+  </select>
+</div>
