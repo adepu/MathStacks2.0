@@ -57,6 +57,9 @@ $scope.usageType = sharedProperties.getUsageType();
 $scope.questionAmount = parseInt(sharedProperties.getQuestionAmountType());
 $scope.difficulty = sharedProperties.getDifficultyType();
 $scope.currentQuestion = sharedProperties.getCurrentQuestion();
+$scope.headerRow = sharedProperties.getHeaderRow();
+$scope.bodyColumn = sharedProperties.getBodyColumn();
+$scope.bodyInnerData = sharedProperties.getBodyInnerData();
 // $scope.questionData = sharedProperties.getQuestionData();
 
 

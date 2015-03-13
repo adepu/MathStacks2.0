@@ -1,4 +1,4 @@
-angular.module('MathStacks')
+angular.module('MathStacks.filters', [])
     .filter('to_trusted', ['$sce', function($sce){
         return function(text) {
             return $sce.trustAsHtml(text);
