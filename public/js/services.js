@@ -5,6 +5,19 @@ angular.module('MathStacks.services', [])
         var operatorType = '';
         var difficultyType = '';
         var questionAmount = '';
+        var currentQuestionNumber = 0;
+        var questions = [];
+
+        prepareAllQuestions = function(){
+          alert("hello");
+          alert(currentQuestion);
+        }
+
+        prepareSingleQuestion = function(){
+          alert("single question");
+        }
+
+
         return {
             getUsageType: function () {
                 return usageType;
@@ -29,7 +42,33 @@ angular.module('MathStacks.services', [])
             },
             setQuestionAmountType: function(value) {
                 questionAmount = value;
+            },
+            getQuestions: function() {
+                return questions;
+            },
+            setQuestions: function(value){
+                if(usageType == 'practice'){
+                  prepareSingleQuestion();
+                } else if (usageType == 'quiz'){
+                  prepareAllQuestions();
+                } else if (usageType == 'custom'){
+                  questions = value;
+                }
+            },
+            getCurrentQuestionNumber: function() {
+                return currentQuestionNumber;
+            },
+            setCurrentQuestionNumber: function(value) {
+                currentQuestionNumber = value;
+            },
+            getCurrentQuestion: function() {
+                return questions[currentQuestionNumber];
+            },
+            //work on implementing this for different versions different functionalities
+            nextQuestion: function(){
+
             }
+
 
 
         };

@@ -14,22 +14,34 @@ controller('operatorSelectionController', function($scope, sharedProperties) {
 
 }).
 controller('difficultySelectionController', function($scope, sharedProperties) {
-
-  $scope.difficultyType = function(selectedDifficultyType) {
-    sharedProperties.setDifficultyType(selectedDifficultyType);
-  };
+  //set correct location for next page load
   if(sharedProperties.getUsageType() == "practice"){
     $scope.nextPageFromUsageType = '/practicePage'
   }else{
     $scope.nextPageFromUsageType = '/questionAmount'
   }
 
+  $scope.difficultyType = function(selectedDifficultyType) {
+    sharedProperties.setDifficultyType(selectedDifficultyType);
+    //if in practice mode, load initial problem at this point
+    if(sharedProperties.getUsageType() == "practice"){
+      sharedProperties.setQuestions(null);
+    }
+  };
+
+
 }).
 controller('questionAmountController', function($scope, sharedProperties) {
 
   $scope.questionAmountType = function(selectedQuestionAmountType) {
     sharedProperties.setQuestionAmountType(selectedQuestionAmountType);
+    //if in quiz mode, load all problems at this point
+    if(sharedProperties.getUsageType() == "quiz"){
+      sharedProperties.setQuestions(null);
+    }
   };
+
+
 
 }).
 controller('practicePageController', function($scope, sharedProperties) {
@@ -44,6 +56,7 @@ controller('quizPageController', function($scope, sharedProperties) {
 $scope.usageType = sharedProperties.getUsageType();
 $scope.questionAmount = parseInt(sharedProperties.getQuestionAmountType());
 $scope.difficulty = sharedProperties.getDifficultyType();
+$scope.currentQuestion = sharedProperties.getCurrentQuestion();
 // $scope.questionData = sharedProperties.getQuestionData();
 
 
