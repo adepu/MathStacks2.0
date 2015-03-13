@@ -57,6 +57,7 @@ $scope.usageType = sharedProperties.getUsageType();
 $scope.questionAmount = parseInt(sharedProperties.getQuestionAmountType());
 $scope.difficulty = sharedProperties.getDifficultyType();
 $scope.currentQuestion = sharedProperties.getCurrentQuestion();
+$scope.questionDescription = sharedProperties.getQuestionDescription();
 $scope.headerRow = sharedProperties.getHeaderRow();
 $scope.bodyColumn = sharedProperties.getBodyColumn();
 $scope.bodyInnerData = sharedProperties.getBodyInnerData();
@@ -64,7 +65,9 @@ $scope.bodyInnerData = sharedProperties.getBodyInnerData();
 
 
 // setupTable(questionData);
-
+console.log($scope.questionDescription);
+console.log($scope.bodyColumn);
+console.log($scope.bodyInnerData);
 
 function setupQuiz(){
 

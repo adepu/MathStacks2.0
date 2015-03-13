@@ -17,9 +17,9 @@ angular.module('MathStacks.services', [])
 
           var difficultyMaxNumber = 0;
 
-          if(difficultyType = 'beginner'){
+          if(difficultyType == 'beginner'){
             difficultyMaxNumber = 10;
-          } else if(difficultyType = 'challenger'){
+          } else if(difficultyType == 'challenger'){
             difficultyMaxNumber = 100;
           }
 
@@ -43,6 +43,8 @@ angular.module('MathStacks.services', [])
 
 
             }
+
+            console.log(questions);
           }
         //   else if (operatorType == 'subtraction'){
         //     for(var i = 0; i < questionAmountSelection; i++){
@@ -97,127 +99,137 @@ angular.module('MathStacks.services', [])
             //determine correct headers
             if(questions[currentQuestionNumber].answer > 99){
               headerRow = ["&nbsp;", "Hundreds Column", "Tens Column","Ones Column" ];
-              bodyColumn = ["Carry Row", "First Number", "Second Number", "Answer Row"];
+              bodyColumn = [];
 
-              hundredsColumn = {};
-              hundredsColumn["Carry Row"] = "<input type='text' id='tensCarry' pattern='[0-9]*' name='Tens Carry' maxlength='1'>";
-              hundredsColumn["First Number"] = "&nbsp;";
-              hundredsColumn["Second Number"] = "&nbsp;";
-              hundredsColumn["Answer Row"] = "=<input type='text' id='hundredsAnswer' pattern='[0-9]*' name='Hundreds Answer' maxlength='1'>";
+              carryRow = [];
+              carryRow.push("Carry Row");
+              firstNumber = [];
+              firstNumber.push("First Number");
+              secondNumber = [];
+              secondNumber.push("Second Number");
+              answerRow = [];
+              answerRow.push("Answer Row");
 
-              tensColumn = {};
+              carryRow.push("<input type='text' id='tensCarry' pattern='[0-9]*' name='Tens Carry' maxlength='1'>");
+              firstNumber.push("&nbsp;");
+              secondNumber.push("&nbsp;");
+              answerRow.push("=<input type='text' id='hundredsAnswer' pattern='[0-9]*' name='Hundreds Answer' maxlength='1'>");
+
+
               if(((parseInt(questions[currentQuestionNumber].firstNumber) % 10) + (parseInt(questions[currentQuestionNumber].secondNumber) % 10)) < 10){
-                tensColumn["Carry Row"] = "&nbsp;";
+                carryRow.push("&nbsp;");
               } else {
-                tensColumn["Carry Row"] = "<input type='text' id='onesCarry' pattern='[0-9]*' name='Ones Carry' maxlength='1'>";
+                carryRow.push("<input type='text' id='onesCarry' pattern='[0-9]*' name='Ones Carry' maxlength='1'>");
               }
 
               if(parseInt(questions[currentQuestionNumber].firstNumber) < 10){
-                tensColumn["First Number"] = "&nbsp;";
+                firstNumber.push("&nbsp;");
               } else {
-                tensColumn["First Number"] = ((parseInt(questions[currentQuestionNumber].firstNumber) / 10) % 10).toString();
+                firstNumber.push(((parseInt(questions[currentQuestionNumber].firstNumber / 10)) % 10).toString());
               }
 
               if(parseInt(questions[currentQuestionNumber].secondNumber) < 10){
-                tensColumn["Second Number"] = "&nbsp;";
+                secondNumber.push("&nbsp;");
               } else {
-                tensColumn["Second Number"] = "+" + ((parseInt(questions[currentQuestionNumber].secondNumber) / 10) % 10).toString();
+                secondNumber.push("+" + ((parseInt(questions[currentQuestionNumber].secondNumber / 10)) % 10).toString());
               }
 
-              tensColumn["Answer Row"] = "<input type='text' id='tensAnswer' pattern='[0-9]*' name='Tens Answer' maxlength='1'>";
+              answerRow.push("<input type='text' id='tensAnswer' pattern='[0-9]*' name='Tens Answer' maxlength='1'>");
 
-              onesColumn = {};
 
-              onesColumn["Carry Row"] = "&nbsp;";
-              onesColumn["First Number"] = (parseInt(questions[currentQuestionNumber].firstNumber) % 10).toString();
+
+              carryRow.push("&nbsp;");
+              firstNumber.push((parseInt(questions[currentQuestionNumber].firstNumber) % 10).toString());
               if(parseInt(questions[currentQuestionNumber].secondNumber) < 10){
-                onesColumn["Second Number"] = "+" + (parseInt(questions[currentQuestionNumber].secondNumber) % 10).toString();
+                secondNumber.push("+" + (parseInt(questions[currentQuestionNumber].secondNumber) % 10).toString());
               }else{
-                onesColumn["Second Number"] = (parseInt(questions[currentQuestionNumber].secondNumber) % 10).toString();
+                secondNumber.push((parseInt(questions[currentQuestionNumber].secondNumber) % 10).toString());
               }
-              onesColumn["Answer Row"] = "<input type='text' id='onesAnswer' pattern='[0-9]*' name='Ones Answer' maxlength='1'>";
+              answerRow.push("<input type='text' id='onesAnswer' pattern='[0-9]*' name='Ones Answer' maxlength='1'>");
 
 
-              bodyInnerData = {
+              bodyColumn.push(carryRow);
+              bodyColumn.push(firstNumber);
+              bodyColumn.push(secondNumber);
+              bodyColumn.push(answerRow);
 
-                "Hundreds Column": hundredsColumn,
-                "Tens Column": tensColumn,
-                "Ones Column": onesColumn,
-
-
-              }
 
 
 
             } else if (questions[currentQuestionNumber].answer > 9){
               headerRow = ["&nbsp;", "Tens Column","Ones Column" ];
-              bodyColumn = ["Carry Column", "First Number", "Second Number", "Answer Row"];
+              bodyColumn = [];
 
+              carryRow = [];
+              carryRow.push("Carry Row");
+              firstNumber = [];
+              firstNumber.push("First Number");
+              secondNumber = [];
+              secondNumber.push("Second Number");
+              answerRow = [];
+              answerRow.push("Answer Row");
 
-
-              tensColumn = {};
               if(((parseInt(questions[currentQuestionNumber].firstNumber) % 10) + (parseInt(questions[currentQuestionNumber].secondNumber) % 10)) < 10){
-                tensColumn["Carry Row"] = "&nbsp;";
+                carryRow.push("&nbsp;");
               } else {
-                tensColumn["Carry Row"] = "<input type='text' id='onesCarry' pattern='[0-9]*' name='Ones Carry' maxlength='1'>";
+                carryRow.push("<input type='text' id='onesCarry' pattern='[0-9]*' name='Ones Carry' maxlength='1'>");
               }
 
               if(parseInt(questions[currentQuestionNumber].firstNumber) < 10){
-                tensColumn["First Number"] = "&nbsp;";
+                firstNumber.push("&nbsp;");
               } else {
-                tensColumn["First Number"] = ((parseInt(questions[currentQuestionNumber].firstNumber) / 10) % 10).toString();
+                firstNumber.push(((parseInt(questions[currentQuestionNumber].firstNumber / 10)) % 10).toString());
               }
 
               if(parseInt(questions[currentQuestionNumber].secondNumber) < 10){
-                tensColumn["Second Number"] = "&nbsp;";
+                secondNumber.push("&nbsp;");
               } else {
-                tensColumn["Second Number"] = "+" + ((parseInt(questions[currentQuestionNumber].secondNumber) / 10) % 10).toString();
+                secondNumber.push("+" + ((parseInt(questions[currentQuestionNumber].secondNumber / 10)) % 10).toString());
               }
 
-              tensColumn["Answer Row"] = "=<input type='text' id='tensAnswer' pattern='[0-9]*' name='Tens Answer' maxlength='1'>";
+              answerRow.push("=<input type='text' id='tensAnswer' pattern='[0-9]*' name='Tens Answer' maxlength='1'>");
 
-              onesColumn = {};
 
-              onesColumn["Carry Row"] = "&nbsp;";
-              onesColumn["First Number"] = (parseInt(questions[currentQuestionNumber].firstNumber) % 10).toString();
+
+              carryRow.push("&nbsp;");
+              firstNumber.push((parseInt(questions[currentQuestionNumber].firstNumber) % 10).toString());
               if(parseInt(questions[currentQuestionNumber].secondNumber) < 10){
-                onesColumn["Second Number"] = "+" + (parseInt(questions[currentQuestionNumber].secondNumber) % 10).toString();
+                secondNumber.push("+" + (parseInt(questions[currentQuestionNumber].secondNumber) % 10).toString());
               }else{
-                onesColumn["Second Number"] = (parseInt(questions[currentQuestionNumber].secondNumber) % 10).toString();
+                secondNumber.push((parseInt(questions[currentQuestionNumber].secondNumber) % 10).toString());
               }
-              onesColumn["Answer Row"] = "<input type='text' id='onesAnswer' pattern='[0-9]*' name='Ones Answer' maxlength='1'>";
+              answerRow.push("<input type='text' id='onesAnswer' pattern='[0-9]*' name='Ones Answer' maxlength='1'>");
 
 
-              bodyInnerData = {
-
-                "Tens Column": tensColumn,
-                "Ones Column": onesColumn,
-
-              }
-
-
-
-
+              bodyColumn.push(carryRow);
+              bodyColumn.push(firstNumber);
+              bodyColumn.push(secondNumber);
+              bodyColumn.push(answerRow);
 
 
             } else {
               headerRow = ["&nbsp;", "Ones Column" ];
-              bodyColumn = ["First Number", "Second Number", "Answer Row"];
+              bodyColumn = [];
 
-              onesColumn = {};
+              firstNumber = [];
+              firstNumber.push("First Number");
+              secondNumber = [];
+              secondNumber.push("Second Number");
+              answerRow = [];
+              answerRow.push("Answer Row");
 
-              onesColumn["First Number"] = (parseInt(questions[currentQuestionNumber].firstNumber) % 10).toString();
+              firstNumber.push((parseInt(questions[currentQuestionNumber].firstNumber) % 10).toString());
 
-              onesColumn["Second Number"] = "+" + (parseInt(questions[currentQuestionNumber].secondNumber) % 10).toString();
+              secondNumber.push("+" + (parseInt(questions[currentQuestionNumber].secondNumber) % 10).toString());
 
-              onesColumn["Answer Row"] = "=<input type='text' id='onesAnswer' pattern='[0-9]*' name='Ones Answer' maxlength='1'>";
+              answerRow.push("=<input type='text' id='onesAnswer' pattern='[0-9]*' name='Ones Answer' maxlength='1'>");
 
 
-              bodyInnerData = {
 
-                "Ones Column": onesColumn
+              bodyColumn.push(firstNumber);
+              bodyColumn.push(secondNumber);
+              bodyColumn.push(answerRow);
 
-              }
 
 
 
