@@ -2,6 +2,7 @@ angular.module('MathStacks', [
    'MathStacks.controllers',
    'MathStacks.services',
    'MathStacks.directives',
+   'MathStacks.filters',
    'ngRoute'
  ]).
  config(['$routeProvider', function($routeProvider) {
