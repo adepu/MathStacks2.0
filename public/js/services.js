@@ -12,9 +12,15 @@ angular.module('MathStacks.services', [])
         var bodyColumn = [];
         var bodyInnerData = {};
 
+
+
+
         //used to prepare all questions for a quiz
         prepareAllQuestions = function(){
-
+          questions = [];
+          headerRow = [];
+          bodyColumn = [];
+          bodyInnerData = {};
           var difficultyMaxNumber = 0;
 
           if(difficultyType == 'beginner'){
@@ -94,7 +100,9 @@ angular.module('MathStacks.services', [])
         generateArraysForViewDisplay = function(){
 
           questionDescription = "Question " + (currentQuestionNumber+1).toString() + ": What does " + (questions[currentQuestionNumber].firstNumber).toString() + " " + questions[currentQuestionNumber].sign + " " + (questions[currentQuestionNumber].secondNumber).toString() + " equal?";
-
+          first = questions[currentQuestionNumber].firstNumber.toString();
+          second = questions[currentQuestionNumber].secondNumber.toString();
+          sign = questions[currentQuestionNumber].sign.toString();
           if(operatorType == 'addition'){
             //determine correct headers
             if(questions[currentQuestionNumber].answer > 99){
@@ -113,7 +121,7 @@ angular.module('MathStacks.services', [])
               carryRow.push("<input type='text' id='tensCarry' pattern='[0-9]*' name='Tens Carry' maxlength='1'>");
               firstNumber.push("&nbsp;");
               secondNumber.push("&nbsp;");
-              answerRow.push("=<input type='text' id='hundredsAnswer' pattern='[0-9]*' name='Hundreds Answer' maxlength='1'>");
+              answerRow.push("=<input type='text' ng-model='hundredsAnswerNumber' id='hundredsAnswer' pattern='[0-9]*' name='Hundreds Answer' maxlength='1'>");
 
 
               if(((parseInt(questions[currentQuestionNumber].firstNumber) % 10) + (parseInt(questions[currentQuestionNumber].secondNumber) % 10)) < 10){
@@ -134,7 +142,7 @@ angular.module('MathStacks.services', [])
                 secondNumber.push("+" + ((parseInt(questions[currentQuestionNumber].secondNumber / 10)) % 10).toString());
               }
 
-              answerRow.push("<input type='text' id='tensAnswer' pattern='[0-9]*' name='Tens Answer' maxlength='1'>");
+              answerRow.push("<input type='text' ng-model='trackingData.tensAnswer' id='tensAnswer' pattern='[0-9]*' name='Tens Answer' maxlength='1'>");
 
 
 
@@ -145,7 +153,7 @@ angular.module('MathStacks.services', [])
               }else{
                 secondNumber.push((parseInt(questions[currentQuestionNumber].secondNumber) % 10).toString());
               }
-              answerRow.push("<input type='text' id='onesAnswer' pattern='[0-9]*' name='Ones Answer' maxlength='1'>");
+              answerRow.push("<input type='text' ng-model='trackingData.onesAnswer' id='onesAnswer' pattern='[0-9]*' name='Ones Answer' maxlength='1'>");
 
 
               bodyColumn.push(carryRow);
@@ -187,7 +195,7 @@ angular.module('MathStacks.services', [])
                 secondNumber.push("+" + ((parseInt(questions[currentQuestionNumber].secondNumber / 10)) % 10).toString());
               }
 
-              answerRow.push("=<input type='text' id='tensAnswer' pattern='[0-9]*' name='Tens Answer' maxlength='1'>");
+              answerRow.push("=<input type='text' ng-model='trackingData.tensAnswer' id='tensAnswer' pattern='[0-9]*' name='Tens Answer' maxlength='1'>");
 
 
 
@@ -198,7 +206,7 @@ angular.module('MathStacks.services', [])
               }else{
                 secondNumber.push((parseInt(questions[currentQuestionNumber].secondNumber) % 10).toString());
               }
-              answerRow.push("<input type='text' id='onesAnswer' pattern='[0-9]*' name='Ones Answer' maxlength='1'>");
+              answerRow.push("<input type='text' ng-model='trackingData.onesAnswer' id='onesAnswer' pattern='[0-9]*' name='Ones Answer' maxlength='1'>");
 
 
               bodyColumn.push(carryRow);
@@ -222,7 +230,7 @@ angular.module('MathStacks.services', [])
 
               secondNumber.push("+" + (parseInt(questions[currentQuestionNumber].secondNumber) % 10).toString());
 
-              answerRow.push("=<input type='text' id='onesAnswer' pattern='[0-9]*' name='Ones Answer' maxlength='1'>");
+              answerRow.push("=<input type='text' ng-model='trackingData.onesAnswer' id='onesAnswer' pattern='[0-9]*' name='Ones Answer' maxlength='1'>");
 
 
 
@@ -306,6 +314,16 @@ angular.module('MathStacks.services', [])
             getBodyInnerData: function() {
                 return bodyInnerData;
             },
+            getFirst: function() {
+                return first;
+            },
+            getSecond: function() {
+                return second;
+            },
+            getSign: function() {
+                return sign;
+            },
+
 
             //work on implementing this for different versions different functionalities
             nextQuestion: function(){

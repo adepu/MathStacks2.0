@@ -51,7 +51,7 @@ controller('practicePageController', function($scope, sharedProperties) {
 
 
 }).
-controller('quizPageController', function($scope, sharedProperties) {
+controller('quizPageController', function($scope, sharedProperties, $compile) {
 
 $scope.usageType = sharedProperties.getUsageType();
 $scope.questionAmount = parseInt(sharedProperties.getQuestionAmountType());
@@ -61,7 +61,9 @@ $scope.questionDescription = sharedProperties.getQuestionDescription();
 $scope.headerRow = sharedProperties.getHeaderRow();
 $scope.bodyColumn = sharedProperties.getBodyColumn();
 $scope.bodyInnerData = sharedProperties.getBodyInnerData();
-// $scope.questionData = sharedProperties.getQuestionData();
+$scope.first = sharedProperties.getFirst();
+$scope.second = sharedProperties.getSecond();
+$scope.sign = sharedProperties.getSign();
 
 
 // setupTable(questionData);
@@ -105,5 +107,12 @@ function setupQuiz(){
 $scope.getNumber = function(num) {
     return new Array(num);
 }
+
+$scope.doThis = function(){
+  console.log("test");
+  console.log($scope.trackingData);
+}
+
+
 
 });
