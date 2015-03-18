@@ -1,0 +1,10 @@
+<ng-include src="'/views/backButtonArea.html'"></ng-include>
+<div id="optionsSelectArea">
+  <h2>Please select a difficulty</h2>
+  <table id='difficultySelectionTable'>
+    <tr>
+      <td click-link={{nextPageFromUsageType}} ng-click='difficultyType("beginner")' id='beginnerButton'>Beginner</td>
+      <td click-link={{nextPageFromUsageType}} ng-click='difficultyType("challenger")' id='challengerButton'>Challenger</td>
+    </tr>
+  </table>
+</div>

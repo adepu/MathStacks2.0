@@ -1,0 +1,24 @@
+<ng-include src="'/views/homePageRedirectArea.html'"></ng-include>
+
+<div id="questionSelectorArea">
+  <select id="questionSelector" name="mydropdown">
+    <option ng-repeat="i in getNumber(questionAmount) track by $index">Question {{$index + 1}}</option>
+  </select>
+</div>
+
+<h2>{{questionDescription}}</h2>
+
+<div id="tableArea">
+    <table border="1">
+      <tbody>
+        <tr>
+          <th ng-repeat="header in headerRow track by $index" ng-bind-html="header | to_trusted">{{header}}</th>
+        </tr>
+        <tr ng-repeat="row in bodyColumn track by $index">
+          <th ng-repeat="item in row track by $index" ng-bind-html="item | to_trusted">{{item}}</th>
+        </tr>
+      </tbody>
+    </table>
+</div>
+
+<h2 id="answerSpot">Your Answer: {{first}} {{sign}} {{second}} = {{hundredsAnswerInput}}</h2>
